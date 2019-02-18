@@ -23,13 +23,10 @@ public class MainActivity extends AppCompatActivity {
         mFindRestaurantsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
-//              Toast.makeText(MainActivity.this, "HelloWorld!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
-                startActivity(intent);
                 String location = mLocationEditText.getText().toString();
-                Log.d(TAG, location);
-                Toast.makeText(MainActivity.this, location, Toast.LENGTH_LONG).show();
+                intent.putExtra("location", location);
+                startActivity(intent);
             }
         });
     }
