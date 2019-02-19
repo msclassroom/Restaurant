@@ -37,6 +37,6 @@ public class RestaurantsActivity extends AppCompatActivity {
             }
         });
         mLocationTextView = (TextView) findViewById(R.id.locationTextView);
-        mLocationTextView.setText("Here are all the restaurants around " + location);
+        mLocationTextView.setText("Here are all the restaurants near: " + location);
     }
 }

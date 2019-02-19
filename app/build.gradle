@@ -33,4 +33,7 @@ dependencies {
 
     //Robolectric dependencies
     testImplementation "org.robolectric:robolectric:3.8"
+
+    //Espresso dependencies
+    androidTestImplementation "com.android.support.test:rules:1.0.2"
 }
