@@ -17,6 +17,9 @@
         android:layout_below="@+id/locationTextView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5_arrays_and_lists
 
 </RelativeLayout>
