@@ -1,4 +1,4 @@
-package io.github.vinge1718.restaurant;
+package io.github.vinge1718.restaurant.services;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -7,6 +7,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import io.github.vinge1718.restaurant.Constants;
+import io.github.vinge1718.restaurant.models.Restaurant;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.HttpUrl;

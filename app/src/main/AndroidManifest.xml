@@ -10,12 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RestaurantsActivity">
+        <activity android:name=".ui.RestaurantsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="io.github.vinge1718.restaurant.MainActivity"></meta-data>
+                android:value="io.github.vinge1718.restaurant.ui.MainActivity"></meta-data>
         </activity>
-        <activity android:name=".MainActivity"
+        <activity android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

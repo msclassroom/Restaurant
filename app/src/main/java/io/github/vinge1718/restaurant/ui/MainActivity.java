@@ -1,4 +1,4 @@
-package io.github.vinge1718.restaurant;
+package io.github.vinge1718.restaurant.ui;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,10 +11,9 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.lang.reflect.Type;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.vinge1718.restaurant.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = MainActivity.class.getSimpleName();

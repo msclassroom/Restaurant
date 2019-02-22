@@ -10,6 +10,9 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowActivity;
 
+import io.github.vinge1718.restaurant.ui.MainActivity;
+import io.github.vinge1718.restaurant.ui.RestaurantsActivity;
+
 import static junit.framework.TestCase.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
