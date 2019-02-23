@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
-import io.github.vinge1718.restaurant.ui.RestaurantsActivity;
+import io.github.vinge1718.restaurant.ui.RestaurantListActivity;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
@@ -16,13 +16,13 @@ import static junit.framework.TestCase.assertNotNull;
 
 @RunWith(RobolectricTestRunner.class)
 
-public class RestaurantsActivityTest {
-    private RestaurantsActivity activity;
+public class RestaurantListActivityTest {
+    private RestaurantListActivity activity;
     private ListView mRestaurantListView;
 
     @Before
     public void setup(){
-        activity = Robolectric.setupActivity(RestaurantsActivity.class);
+        activity = Robolectric.setupActivity(RestaurantListActivity.class);
         mRestaurantListView = (ListView) activity.findViewById(R.id.listView);
     }
 
