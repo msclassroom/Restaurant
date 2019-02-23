@@ -32,9 +32,6 @@
             android:layout_height="wrap_content"
             android:text="One Cuisine Type"
             android:id="@+id/categoryTextView"
-            android:layout_below="@+id/restaurantNameTextView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:textStyle="italic"/>
 
         <RelativeLayout
@@ -46,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="Rating"
                 android:id="@+id/ratingTextView"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/colorAccent"/>
