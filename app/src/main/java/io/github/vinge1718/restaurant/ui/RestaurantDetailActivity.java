@@ -31,7 +31,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
         adapterViewPager = new RestaurantPagerAdapter(getSupportFragmentManager(), mRestaurants);
         mViewPager.setAdapter(adapterViewPager);
-        mViewPager.setCurrentItem(startingPosition);gi
+        mViewPager.setCurrentItem(startingPosition);
     }
 }
 
