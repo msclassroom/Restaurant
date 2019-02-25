@@ -72,5 +72,8 @@ dependencies {
 
     //Add firebase SDK
     implementation 'com.google.firebase:firebase-core:16.0.7'
+
+    //Realtime Database for firebase data saving
+    implementation 'com.google.firebase:firebase-database:16.0.6'
 }
 apply plugin: 'com.google.gms.google-services'
