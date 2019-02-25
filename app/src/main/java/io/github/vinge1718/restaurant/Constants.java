@@ -7,5 +7,6 @@ public class Constants {
 
     //Data persistence _ Shared Preferences
     public static final String PREFERENCES_LOCATION_KEY = "location";
-
+    //Child node name for saving the values for searched Locations in Firebase
+    public static final String FIREBASE_CHILD_SEARCHED_LOCATION = "searchedLocation";
 }
