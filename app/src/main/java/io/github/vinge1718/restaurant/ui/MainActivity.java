@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
     @BindView(R.id.locationEditText) EditText mLocationEditText;
     @BindView(R.id.appNameTextView) TextView mAppNameTextView;
+    @BindView(R.id.savedRestaurantsButton) Button mSavedRestaurantsButton;
 
 //    private SharedPreferences mSharedPreferences;
 //    private SharedPreferences.Editor mEditor;
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Typeface caviarFont = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
         mAppNameTextView.setTypeface(caviarFont);
         mFindRestaurantsButton.setOnClickListener(this);
+        mSavedRestaurantsButton.setOnClickListener(this);
     }
 
     @Override
@@ -88,12 +90,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("location", location);
             startActivity(intent);
         }
+        if (v == mSavedRestaurantsButton) {
+            Intent intent = new Intent(MainActivity.this, SavedRestaurantListActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void saveLocationToFirebase(String location){
         mSearchedLocationReference.push().setValue(location);
     }
 
+    //    onDestroy() method is defined in 'top level' of activity, not nested within another block.
+    //    code here is executed when the user quits the activity.
     @Override
     protected void onDestroy(){
         super.onDestroy();
