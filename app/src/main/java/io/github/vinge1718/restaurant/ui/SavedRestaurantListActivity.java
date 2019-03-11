@@ -21,12 +21,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.vinge1718.restaurant.Constants;
 import io.github.vinge1718.restaurant.R;
+import io.github.vinge1718.restaurant.adapters.FirebaseRestaurantListAdapter;
 import io.github.vinge1718.restaurant.adapters.FirebaseRestaurantViewHolder;
 import io.github.vinge1718.restaurant.models.Restaurant;
+import io.github.vinge1718.restaurant.util.OnStartDragListener;
+import io.github.vinge1718.restaurant.util.SimpleItemTouchHelperCallback;
 
-public class SavedRestaurantListActivity extends AppCompatActivity {
+public class SavedRestaurantListActivity extends AppCompatActivity implements OnStartDragListener {
     private DatabaseReference mRestaurantReference;
-    private FirebaseRecyclerAdapter<Restaurant, FirebaseRestaurantViewHolder> mFirebaseAdapter;
+    private FirebaseRestaurantListAdapter mFirebaseAdapter;
     private ItemTouchHelper mItemTouchHelper;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
@@ -51,23 +54,14 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
                         .setQuery(mRestaurantReference, Restaurant.class)
                         .build();
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Restaurant, FirebaseRestaurantViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull FirebaseRestaurantViewHolder firebaseRestaurantViewHolder, int position, @NonNull Restaurant restaurant) {
-                firebaseRestaurantViewHolder.bindRestaurant(restaurant);
-            }
-
-            @NonNull
-            @Override
-            public FirebaseRestaurantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list_item_drag, parent, false);
-                return new FirebaseRestaurantViewHolder(view);
-            }
-        };
+        mFirebaseAdapter = new FirebaseRestaurantListAdapter(options, mRestaurantReference, this, this);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mFirebaseAdapter);
         mRecyclerView.setHasFixedSize(true);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
     @Override
@@ -82,5 +76,8 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
         if(mFirebaseAdapter!= null) {
             mFirebaseAdapter.stopListening();
         }
+    }
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder){
+        mItemTouchHelper.startDrag(viewHolder);
     }
 }
