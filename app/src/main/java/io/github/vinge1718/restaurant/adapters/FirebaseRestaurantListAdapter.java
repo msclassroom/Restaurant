@@ -101,5 +101,5 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
         getRef(position).removeValue();
     }
 
-    private void
+
 }
