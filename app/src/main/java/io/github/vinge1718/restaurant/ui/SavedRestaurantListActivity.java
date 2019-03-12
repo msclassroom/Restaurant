@@ -52,7 +52,7 @@ public class SavedRestaurantListActivity extends AppCompatActivity implements On
         Query query = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS).child(uid).orderByChild(Constants.FIREBASE_QUERY_INDEX);
         FirebaseRecyclerOptions<Restaurant> options =
                 new FirebaseRecyclerOptions.Builder<Restaurant>()
-                        .setQuery(mRestaurantReference, Restaurant.class)
+                        .setQuery(query, Restaurant.class)
                         .build();
 
         mFirebaseAdapter = new FirebaseRestaurantListAdapter(options, query, this, this);
@@ -78,13 +78,16 @@ public class SavedRestaurantListActivity extends AppCompatActivity implements On
             mFirebaseAdapter.stopListening();
         }
     }
+
     public void onStartDrag(RecyclerView.ViewHolder viewHolder){
         mItemTouchHelper.startDrag(viewHolder);
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        mFirebaseAdapter.cleanup();
-//    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mFirebaseAdapter!= null) {
+            mFirebaseAdapter.stopListening();
+        }
+    }
 }

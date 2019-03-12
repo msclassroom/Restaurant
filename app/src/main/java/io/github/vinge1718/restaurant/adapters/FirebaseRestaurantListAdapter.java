@@ -1,6 +1,7 @@
 package io.github.vinge1718.restaurant.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -13,13 +14,17 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 import io.github.vinge1718.restaurant.R;
 import io.github.vinge1718.restaurant.models.Restaurant;
+import io.github.vinge1718.restaurant.ui.RestaurantDetailActivity;
 import io.github.vinge1718.restaurant.util.ItemTouchHelperAdapter;
 import io.github.vinge1718.restaurant.util.OnStartDragListener;
 
@@ -79,6 +84,16 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
                 return false;
             }
         });
+
+        firebaseRestaurantViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, RestaurantDetailActivity.class);
+                intent.putExtra("position", firebaseRestaurantViewHolder.getAdapterPosition());
+                intent.putExtra("restaurants", Parcels.wrap(mRestaurants));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @NonNull
@@ -101,5 +116,19 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
         getRef(position).removeValue();
     }
 
+    private void setIndexInForebase(){
+        for(Restaurant restaurant: mRestaurants){
+            int index = mRestaurants.indexOf(restaurant);
+            DatabaseReference ref = getRef(index);
+            restaurant.setIndex(Integer.toString(index));
+            ref.setValue(restaurant);
+        }
+    }
 
+    @Override
+    public void stopListening(){
+        super.stopListening();
+        setIndexInForebase();
+        mRef.removeEventListener(mChildEventListener);
+    }
 }
