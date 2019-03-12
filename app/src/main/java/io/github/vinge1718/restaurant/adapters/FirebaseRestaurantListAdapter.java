@@ -128,7 +128,7 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
     @Override
     public void stopListening(){
         super.stopListening();
-        setIndexInForebase();
+        //setIndexInForebase();
         mRef.removeEventListener(mChildEventListener);
     }
 }
