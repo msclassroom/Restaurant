@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,13 +49,13 @@ public class SavedRestaurantListActivity extends AppCompatActivity implements On
     private void setUpFirebaseAdapter(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
-        mRestaurantReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS).child(uid);
+        Query query = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS).child(uid).orderByChild(Constants.FIREBASE_QUERY_INDEX);
         FirebaseRecyclerOptions<Restaurant> options =
                 new FirebaseRecyclerOptions.Builder<Restaurant>()
                         .setQuery(mRestaurantReference, Restaurant.class)
                         .build();
 
-        mFirebaseAdapter = new FirebaseRestaurantListAdapter(options, mRestaurantReference, this, this);
+        mFirebaseAdapter = new FirebaseRestaurantListAdapter(options, query, this, this);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mFirebaseAdapter);
@@ -80,4 +81,10 @@ public class SavedRestaurantListActivity extends AppCompatActivity implements On
     public void onStartDrag(RecyclerView.ViewHolder viewHolder){
         mItemTouchHelper.startDrag(viewHolder);
     }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        mFirebaseAdapter.cleanup();
+//    }
 }

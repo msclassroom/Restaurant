@@ -13,4 +13,7 @@ public class Constants {
 
     //Restaurant node key
     public static final String FIREBASE_CHILD_RESTAURANTS = "restaurants";
+
+    //"index" key of our Restaurant objects used for referencing objects during querying
+    public static final String FIREBASE_QUERY_INDEX = "index";
 }
