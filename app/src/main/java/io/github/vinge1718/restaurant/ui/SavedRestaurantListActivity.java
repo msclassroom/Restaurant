@@ -86,8 +86,8 @@ public class SavedRestaurantListActivity extends AppCompatActivity implements On
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(mFirebaseAdapter!= null) {
-            mFirebaseAdapter.stopListening();
-        }
+//        if(mFirebaseAdapter!= null) {
+//            mFirebaseAdapter.stopListening();
+//        }
     }
 }
