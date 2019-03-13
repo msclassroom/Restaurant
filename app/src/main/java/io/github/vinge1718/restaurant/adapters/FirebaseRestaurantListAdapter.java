@@ -107,6 +107,12 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
     public boolean onItemMove(int fromPosition, int toPosition){
         Collections.swap(mRestaurants, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
+        for (Restaurant restaurant : mRestaurants) {
+            int index = mRestaurants.indexOf(restaurant);
+            DatabaseReference ref = getRef(index);
+            restaurant.setIndex(Integer.toString(index));
+            ref.setValue(restaurant);
+        }
         return false;
     }
 
