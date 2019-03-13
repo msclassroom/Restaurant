@@ -83,11 +83,11 @@ public class SavedRestaurantListActivity extends AppCompatActivity implements On
         mItemTouchHelper.startDrag(viewHolder);
     }
 
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        if(mFirebaseAdapter!= null) {
-//            mFirebaseAdapter.stopListening();
-//        }
-//    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mFirebaseAdapter!= null) {
+            mFirebaseAdapter.stopListening();
+        }
+    }
 }
