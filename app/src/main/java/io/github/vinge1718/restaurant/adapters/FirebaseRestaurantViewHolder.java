@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,8 +27,9 @@ import io.github.vinge1718.restaurant.Constants;
 import io.github.vinge1718.restaurant.R;
 import io.github.vinge1718.restaurant.models.Restaurant;
 import io.github.vinge1718.restaurant.ui.RestaurantDetailActivity;
+import io.github.vinge1718.restaurant.util.ItemTouchHelperViewHolder;
 
-public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder{
+public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
     View mView;
     Context mContext;
     public ImageView mRestaurantImageView;
@@ -48,5 +50,17 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder{
         categoryTextView.setText(restaurant.getCategories().get(0));
         ratingTextView.setText("Rating: " + restaurant.getRating() + "/5");
         Picasso.get().load(restaurant.getImageUrl()).into(mRestaurantImageView);
+    }
+
+    @Override
+    public void onItemSelected(){
+        Log.d("Animation", "onItemSelected");
+        // we will add animations here
+    }
+
+    @Override
+    public void onItemClear(){
+        Log.d("Animation", "onItemClear");
+        // we will add animations here
     }
 }
