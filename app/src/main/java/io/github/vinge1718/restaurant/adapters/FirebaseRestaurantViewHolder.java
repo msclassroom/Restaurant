@@ -1,6 +1,8 @@
 package io.github.vinge1718.restaurant.adapters;
 
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -54,13 +56,19 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implem
 
     @Override
     public void onItemSelected(){
-        Log.d("Animation", "onItemSelected");
+        //Log.d("Animation", "onItemSelected");
         // we will add animations here
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext,R.animator.drag_scale_on);
+        set.setTarget(itemView);
+        set.start();
     }
 
     @Override
     public void onItemClear(){
-        Log.d("Animation", "onItemClear");
+        //Log.d("Animation", "onItemClear");
         // we will add animations here
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(mContext, R.animator.drag_scale_off);
+        set.setTarget(itemView);
+        set.start();
     }
 }
