@@ -63,6 +63,8 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
         public RestaurantViewHolder(View itemView){
             super(itemView);
+            ButterKnife.bind(this, itemView);
+            mContext = itemView.getContext();
             // Determines the current orientation of the device:
             mOrientation = itemView.getResources().getConfiguration().orientation;
 
@@ -71,8 +73,6 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
             if (mOrientation == Configuration.ORIENTATION_LANDSCAPE){
                 createDetailFragment(0);
             }
-            ButterKnife.bind(this, itemView);
-            mContext = itemView.getContext();
             itemView.setOnClickListener(this);
         }
 
