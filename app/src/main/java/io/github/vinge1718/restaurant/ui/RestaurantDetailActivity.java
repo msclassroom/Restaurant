@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.vinge1718.restaurant.Constants;
 import io.github.vinge1718.restaurant.R;
 import io.github.vinge1718.restaurant.adapters.RestaurantPagerAdapter;
 import io.github.vinge1718.restaurant.models.Restaurant;
@@ -26,8 +27,8 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        mRestaurants = Parcels.unwrap(getIntent().getParcelableExtra("restaurants"));
-        int startingPosition = getIntent().getIntExtra("position", 0);
+        mRestaurants = Parcels.unwrap(getIntent().getParcelableExtra(Constants.EXTRA_KEY_RESTAURANTS));
+        int startingPosition = getIntent().getIntExtra(Constants.EXTRA_KEY_POSITION, 0);
 
         adapterViewPager = new RestaurantPagerAdapter(getSupportFragmentManager(), mRestaurants);
         mViewPager.setAdapter(adapterViewPager);

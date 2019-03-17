@@ -1,6 +1,7 @@
 package io.github.vinge1718.restaurant.ui;
 
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -27,6 +28,7 @@ import io.github.vinge1718.restaurant.R;
 import io.github.vinge1718.restaurant.adapters.RestaurantListAdapter;
 import io.github.vinge1718.restaurant.models.Restaurant;
 import io.github.vinge1718.restaurant.services.YelpService;
+import io.github.vinge1718.restaurant.util.OnRestaurantSelectedListener;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -42,6 +44,17 @@ public class RestaurantListFragment extends Fragment {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mRecentAddress;
+    private OnRestaurantSelectedListener mOnRestaurantSelectedListener;
+
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        try{
+            mOnRestaurantSelectedListener = (OnRestaurantSelectedListener) context;
+        } catch (ClassCastException e){
+            throw new ClassCastException(context.toString() + e.getMessage());
+        }
+    }
 
     public RestaurantListFragment() {
         // Required empty public constructor
@@ -85,7 +98,7 @@ public class RestaurantListFragment extends Fragment {
                     // because fragments do not have own context, and must inherit from corresponding activity.
                     @Override
                     public void run() {
-                        mAdapter = new RestaurantListAdapter(getActivity(), restaurants);
+                        mAdapter = new RestaurantListAdapter(getActivity(), restaurants, mOnRestaurantSelectedListener);
                         // Line above states `getActivity()` instead of previous
                         // 'getApplicationContext()' because fragments do not have own context,
                         // must instead inherit it from corresponding activity.
