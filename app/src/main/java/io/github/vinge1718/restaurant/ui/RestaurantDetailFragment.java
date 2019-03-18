@@ -8,8 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,8 +24,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -195,15 +200,34 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         } if (v == mSaveRestaurantButton) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
-            DatabaseReference restaurantRef = FirebaseDatabase
+            final DatabaseReference restaurantRef = FirebaseDatabase
                     .getInstance()
                     .getReference(Constants.FIREBASE_CHILD_RESTAURANTS)
                     .child(uid);
-            DatabaseReference pushRef = restaurantRef.push();
-            String pushId = pushRef.getKey();
-            mRestaurant.setPushId(pushId);
-            pushRef.setValue(mRestaurant);
-            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+            String name = mRestaurant.getName();
+            restaurantRef.orderByChild("name").equalTo(name).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()) {
+                        Toast.makeText(getContext(), "Restaurant already exists", Toast.LENGTH_SHORT).show();
+                        return;
+                    } else{
+                        DatabaseReference pushRef = restaurantRef.push();
+                        String pushId = pushRef.getKey();
+//            Log.w("PushId", pushId);
+                        mRestaurant.setPushId(pushId);
+                        pushRef.setValue(mRestaurant);
+                        Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
         }
     }
 
