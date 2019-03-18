@@ -149,9 +149,8 @@ public class FirebaseRestaurantListAdapter extends FirebaseRecyclerAdapter<Resta
     private void setIndexInForebase(){
         for(Restaurant restaurant: mRestaurants){
             int index = mRestaurants.indexOf(restaurant);
-            DatabaseReference mReference = getRef(index);
-            restaurant.setIndex(Integer.toString(index));
-            mReference.setValue(restaurant);
+            DatabaseReference ref = getRef(index);
+            ref.child("index").setValue(Integer.toString(index));
         }
     }
 
