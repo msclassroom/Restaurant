@@ -209,12 +209,11 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.exists()) {
-                        Toast.makeText(getContext(), "Restaurant already exists", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Currently Selected Restaurant already exists", Toast.LENGTH_LONG).show();
                         return;
                     } else{
                         DatabaseReference pushRef = restaurantRef.push();
                         String pushId = pushRef.getKey();
-//            Log.w("PushId", pushId);
                         mRestaurant.setPushId(pushId);
                         pushRef.setValue(mRestaurant);
                         Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
