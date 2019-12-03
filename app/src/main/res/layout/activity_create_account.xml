@@ -26,7 +26,7 @@
             android:padding="10dp"
             android:layout_marginBottom="10dp"
             android:textColor="@android:color/black"
-            android:textColorHint="@color/colorDivider"
+            android:textColorHint="@color/colorHintText"
             android:textSize="20sp" />
 
         <EditText
@@ -41,7 +41,7 @@
             android:padding="10dp"
             android:layout_marginBottom="10dp"
             android:textColor="@android:color/black"
-            android:textColorHint="@color/colorDivider"
+            android:textColorHint="@color/colorHintText"
             android:textSize="20sp" />
 
         <EditText
@@ -56,7 +56,7 @@
             android:padding="10dp"
             android:layout_marginBottom="10dp"
             android:textColor="@android:color/black"
-            android:textColorHint="@color/colorDivider"
+            android:textColorHint="@color/colorHintText"
             android:textSize="20sp" />
 
         <EditText
@@ -71,7 +71,7 @@
             android:padding="10dp"
             android:layout_marginBottom="10dp"
             android:textColor="@android:color/black"
-            android:textColorHint="@color/colorDivider"
+            android:textColorHint="@color/colorHintText"
             android:textSize="20sp" />
 
 
