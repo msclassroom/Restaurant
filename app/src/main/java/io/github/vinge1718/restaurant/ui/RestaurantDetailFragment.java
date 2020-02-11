@@ -4,9 +4,16 @@ package io.github.vinge1718.restaurant.ui;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Parcel;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,7 +28,11 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,6 +57,12 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
     private ArrayList<Restaurant> mRestaurants;
     private int mPosition;
     private String mSource;
+
+
+    private static final int REQUEST_IMAGE_CAPTURE = 111;
+    private static final int REQUEST_TAKE_PHOTO = 1;
+    private String currentPhotoPath;
+    private static final String TAG = "image creation value";
 
     public RestaurantDetailFragment() {
         // Required empty public constructor
@@ -96,6 +113,76 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
             mSaveRestaurantButton.setOnClickListener(this);
         }
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        if (mSource.equals(Constants.SOURCE_SAVED)) {
+            inflater.inflate(R.menu.menu_photo, menu);
+        } else {
+            inflater.inflate(R.menu.menu_main, menu);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_photo:
+                onLaunchCamera();
+            default:
+                break;
+        }
+        return false;
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = "file:" + image.getAbsolutePath();
+        Log.i(TAG, currentPhotoPath);
+        return image;
+
+    }
+
+    public void onLaunchCamera(){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null ){
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(getActivity(),
+                        "io.github.vinge1718.restaurant.provider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
+
+            //encodeBitmapAndSaveToFirebase(imageBitmap);
+        }
     }
 
     @Override
