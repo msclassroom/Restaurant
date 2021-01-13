@@ -26,9 +26,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 String location = mLocationEditText.getText().toString();
-                Log.d(TAG, location);
-                Toast.makeText(MainActivity.this, location, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
+                intent.putExtra("location", location);
                 startActivity(intent);
             }
         });
