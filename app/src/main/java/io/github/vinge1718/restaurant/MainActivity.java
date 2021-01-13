@@ -1,7 +1,7 @@
 package io.github.vinge1718.restaurant;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +17,9 @@ private Button mFindRestaurantsButton;
         mFindRestaurantsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                Toast.makeText(MainActivity.this, "HelloWorld!", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
-                startActivity(intent);
+                Toast.makeText(MainActivity.this, "HelloWorld!", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
+//                startActivity(intent);
             }
         });
     }
