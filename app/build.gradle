@@ -1,11 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+    compileSdkVersion 29
     defaultConfig {
         applicationId "io.github.vinge1718.restaurant"
         minSdkVersion 15
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -25,4 +31,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+//Robolectric dependencies
+
+    testImplementation 'org.robolectric:robolectric:4.4'
 }
