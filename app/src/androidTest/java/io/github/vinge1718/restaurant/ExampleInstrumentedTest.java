@@ -21,7 +21,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() {
         // Context of the app under test.
-        Context appContext = ApplicationProvider.getApplicationContext();
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         assertEquals("io.github.vinge1718.restaurant", appContext.getPackageName());
     }
