@@ -1,17 +1,16 @@
-package io.github.vinge1718.restaurant;
+package io.github.vinge1718.restaurant.ui;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.vinge1718.restaurant.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     @BindView(R.id.findRestaurantsButton) Button mFindRestaurantsButton;

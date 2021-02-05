@@ -1,5 +1,5 @@
 
-package io.github.vinge1718.restaurant;
+package io.github.vinge1718.restaurant.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

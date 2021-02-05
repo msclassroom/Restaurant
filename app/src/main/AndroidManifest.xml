@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RestaurantsActivity">
+            android:name=".ui.RestaurantsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="io.github.vinge1718.restaurant.MainActivity">
+                android:value="io.github.vinge1718.restaurant.ui.MainActivity">
             </meta-data>
         </activity>
 

@@ -1,9 +1,12 @@
 
-package io.github.vinge1718.restaurant;
+package io.github.vinge1718.restaurant.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import io.github.vinge1718.restaurant.models.Business;
+import io.github.vinge1718.restaurant.models.Region;
 
 public class YelpBusinessesSearchResponse {
 

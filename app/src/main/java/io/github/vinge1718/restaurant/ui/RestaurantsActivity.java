@@ -1,4 +1,4 @@
-package io.github.vinge1718.restaurant;
+package io.github.vinge1718.restaurant.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +17,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.vinge1718.restaurant.models.Business;
+import io.github.vinge1718.restaurant.models.Category;
+import io.github.vinge1718.restaurant.MyRestaurantsArrayAdapter;
+import io.github.vinge1718.restaurant.R;
+import io.github.vinge1718.restaurant.network.YelpApi;
+import io.github.vinge1718.restaurant.models.YelpBusinessesSearchResponse;
+import io.github.vinge1718.restaurant.network.YelpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
