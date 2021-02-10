@@ -11,7 +11,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import io.github.vinge1718.restaurant.ui.RestaurantsActivity;
+import io.github.vinge1718.restaurant.ui.RestaurantListActivity;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
@@ -24,18 +24,18 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
-public class RestaurantsActivityInstrumentationTest {
+public class RestaurantListActivityInstrumentationTest {
     @Rule
-    public ActivityScenarioRule<RestaurantsActivity> activityTestRule =
-            new ActivityScenarioRule<>(RestaurantsActivity.class);
+    public ActivityScenarioRule<RestaurantListActivity> activityTestRule =
+            new ActivityScenarioRule<>(RestaurantListActivity.class);
 
     private View activityDecorView;
 
     @Before
     public void setUp() {
-        activityTestRule.getScenario().onActivity(new ActivityScenario.ActivityAction<RestaurantsActivity>() {
+        activityTestRule.getScenario().onActivity(new ActivityScenario.ActivityAction<RestaurantListActivity>() {
             @Override
-            public void perform(RestaurantsActivity activity) {
+            public void perform(RestaurantListActivity activity) {
                 activityDecorView = activity.getWindow().getDecorView();
             }
         });
@@ -45,7 +45,7 @@ public class RestaurantsActivityInstrumentationTest {
     public void listItemClickDisplaysToastWithCorrectRestaurant(){
         String restaurantName = "Mi Mero Mole";
         onData(anything())
-                .inAdapterView(withId(R.id.listView))
+                .inAdapterView(withId(R.id.recyclerView))
                 .atPosition(0)
                 .perform(click());
         onView(withText(restaurantName))
