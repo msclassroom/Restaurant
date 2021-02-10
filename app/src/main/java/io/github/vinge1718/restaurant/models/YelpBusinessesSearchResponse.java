@@ -5,9 +5,12 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 import io.github.vinge1718.restaurant.models.Business;
 import io.github.vinge1718.restaurant.models.Region;
 
+@Parcel
 public class YelpBusinessesSearchResponse {
 
     @SerializedName("total")
