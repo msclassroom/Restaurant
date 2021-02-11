@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -15,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.github.vinge1718.restaurant.Constants;
 import io.github.vinge1718.restaurant.adapters.RestaurantListAdapter;
 import io.github.vinge1718.restaurant.models.Business;
 import io.github.vinge1718.restaurant.R;
@@ -26,6 +29,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RestaurantListActivity extends AppCompatActivity {
+    private SharedPreferences mSharedPreferences;
+    private String mRecentAddress;
+
     private static final String TAG = RestaurantListActivity.class.getSimpleName();
     private RestaurantListAdapter mAdapter;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
@@ -40,6 +46,10 @@ public class RestaurantListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+
         String location = intent.getStringExtra("location");
 
         YelpApi client = YelpClient.getClient();
@@ -73,7 +83,9 @@ public class RestaurantListActivity extends AppCompatActivity {
             }
 
         });
+
     }
+
     private void showFailureMessage() {
         mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
         mErrorTextView.setVisibility(View.VISIBLE);
