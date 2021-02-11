@@ -29,8 +29,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RestaurantListActivity extends AppCompatActivity {
-    private SharedPreferences mSharedPreferences;
-    private String mRecentAddress;
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentAddress;
 
     private static final String TAG = RestaurantListActivity.class.getSimpleName();
     private RestaurantListAdapter mAdapter;
