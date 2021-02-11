@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "881198472162",
+    "project_id": "myrestaurants-2aef5",
+    "storage_bucket": "myrestaurants-2aef5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881198472162:android:09410c0d96e503c12337bb",
+        "android_client_info": {
+          "package_name": "io.github.vinge1718.restaurant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "881198472162-7anhb1509cmod1b7605d22us21urhbft.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.vinge1718.restaurant",
+            "certificate_hash": "0e655234038d1b0755db55dd31cb7bfe2ff43f55"
+          }
+        },
+        {
+          "client_id": "881198472162-d9iejggpcs0702tq48jsoja1tido496e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8KPO3u8xQBL-j0F7R-J_uXK3qV7QWKXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "881198472162-d9iejggpcs0702tq48jsoja1tido496e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
