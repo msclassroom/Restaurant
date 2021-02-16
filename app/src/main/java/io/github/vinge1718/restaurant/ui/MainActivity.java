@@ -79,10 +79,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             saveLocationToFirebase(location);
 
-//            if(!(location).equals("")) {
-//                addToSharedPreferences(location);
-//            }
-
             Intent intent = new Intent(MainActivity.this, RestaurantListActivity.class);
             intent.putExtra("location", location);
             startActivity(intent);
