@@ -90,6 +90,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         showProgressBar();
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
+            hideProgressBar();
             if (task.isSuccessful()){
 
                 createFirebaseUserProfile(Objects.requireNonNull(task.getResult().getUser()));
