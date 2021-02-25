@@ -64,7 +64,7 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
             @NonNull
             @Override
             public FirebaseRestaurantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list_item, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list_item_drag, parent, false);
                 return new FirebaseRestaurantViewHolder(view);
             }
         };
