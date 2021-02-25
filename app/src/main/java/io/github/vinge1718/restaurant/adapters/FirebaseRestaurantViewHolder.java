@@ -30,6 +30,7 @@ import io.github.vinge1718.restaurant.ui.RestaurantDetailActivity;
 public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     View mView;
     Context mContext;
+    public ImageView mRestaurantImageView;
 
     public FirebaseRestaurantViewHolder(View itemView){
         super(itemView);
@@ -39,7 +40,7 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implem
     }
 
     public void bindRestaurant(Business restaurant) {
-        ImageView restaurantImageView = mView.findViewById(R.id.restaurantImageView);
+        ImageView mRestaurantImageView = mView.findViewById(R.id.restaurantImageView);
         TextView nameTextView = mView.findViewById(R.id.restaurantNameTextView);
         TextView categoryTextView = mView.findViewById(R.id.categoryTextView);
         TextView ratingTextView = mView.findViewById(R.id.ratingTextView);
@@ -47,7 +48,7 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implem
         nameTextView.setText(restaurant.getName());
         categoryTextView.setText(restaurant.getCategories().get(0).getTitle());
         ratingTextView.setText("Rating: " + restaurant.getRating() + "/5");
-        Picasso.get().load(restaurant.getImageUrl()).into(restaurantImageView);
+        Picasso.get().load(restaurant.getImageUrl()).into(mRestaurantImageView);
     }
 
     @Override
